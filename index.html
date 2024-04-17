@@ -19,9 +19,13 @@
 
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li v-for="link in links" class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >{{ link }}</a
+            <li v-for="(link,index) in links" class="nav-item" :key="index">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                :href="link.url"
+                :title="`goes tto the ${link.text} page`"
+                >{{ link.text }}</a
               >
             </li>
           </ul>
@@ -37,7 +41,11 @@
       Vue.createApp({
         data() {
           return {
-            links: ["home", "about", "contant"],
+            links: [
+              { text: "home", url: "index.html" },
+              { text: "about", url: "about.html" },
+              { text: "contact", url: "contact.html" },
+            ],
           };
         },
       }).mount("nav");
